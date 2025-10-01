@@ -1,0 +1,176 @@
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f7f9;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.page-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+/* Table styles */
+.payment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.payment-table th, .payment-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.payment-table th {
+    background-color: #3498db;
+    color: #fff;
+    font-weight: 600;
+}
+
+.payment-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Notes button */
+.notes .show-notes-btn, .screenshot .show-screenshot-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.notes .show-notes-btn:hover, .screenshot .show-screenshot-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Overlay */
+.overlay-content {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 80%;
+    margin: 10% auto;
+    text-align: center;
+}
+
+.notes-overlay, .screenshot-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.notes-overlay .overlay-content, .screenshot-overlay .overlay-content {
+    text-align: center;
+    max-width: 90%;
+    margin: 5% auto;
+}
+
+
+/* Screenshot Overlay */
+.screenshot-overlay .overlay-content {
+    width: 90%;  /* Limit the width of the overlay content */
+    height: 80%;
+    margin: 5% auto; /* Center the overlay and add space from top and bottom */
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.8);  /* Darker background for the overlay */
+}
+
+
+/* Close button */
+.close-overlay {
+    background-color: #e74c3c;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.close-overlay:hover {
+    background-color: #c0392b;
+}
+
+/* Image styling in overlay */
+/* Image styling in overlay */
+.screenshot-img {
+    max-width: 600px;   /* Maximum width the image can take */
+    width: 100%;        /* Ensure the image takes up 100% of the container's width, while respecting max-width */
+    height: 100%;       /* Maintain the aspect ratio of the image */
+    border-radius: 8px; /* Optional: rounded corners for a cleaner look */
+}
+
+/* Status colors */
+.status-approved {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+.status-rejected {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+/* Dropdown and Button */
+.status-dropdown, .update-button {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.status-dropdown:hover, .update-button:hover {
+    background-color: #2980b9;
+}
+
+.update-button {
+    margin-top: 10px;
+}
+
+/* No screenshot text */
+.no-screenshot {
+    color: #888;
+    font-style: italic;
+}

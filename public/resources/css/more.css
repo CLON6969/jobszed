@@ -1,0 +1,427 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* HERO SECTION */
+.hero {
+    display: flex;
+    background-color: #000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.hero img {
+right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+    
+}
+
+/* Overlay Effect */
+.overlay {
+    background: rgba(0, 0, 0, 0.219); /* Dark overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    color: white;
+    padding: 20px;
+    position: absolute;
+    inset: 0; /* Covers the entire hero section */
+}
+
+.overlay-content{
+    width: 60%;
+    padding-left: 45px;
+}
+
+
+
+/* Services Section */
+.services {
+    height: fit-content;
+    padding: 5px 2px;
+    background: white;
+
+}
+
+
+
+.service-cards { 
+    margin-top: 40px;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+   
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    width: 340px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: ease-in-out 0.2s;
+}
+
+.second{
+    width: 60%;
+}
+
+.second h3{
+   font-size: 18px;
+   font-weight: 700;
+}
+
+
+
+.card h3, .card h4 {
+    background: white;
+    padding: 20px 0;
+}
+
+
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+a {
+    margin-top: 20px;
+    text-decoration: none;
+    color: #000000;
+    font-weight: 600;
+}
+
+.bottom-section{
+margin-top: 30px;
+
+height: 70vh;
+display: flex;
+flex-direction: row;
+background: white;
+
+
+}
+
+.first-bottom-section{
+    width: 50%;
+    height: 100%;
+    justify-items: end;
+    padding-right: 30px;
+    padding-top: 30px;
+
+}
+
+.image-container{
+    width: 100%;
+    margin-left: 20px;
+    
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    padding-left: 40px;
+    }
+    
+    .buttons .btn {
+        background: #fff;
+        color: #000;
+        padding: 10px 20px;
+        border: none;
+        margin: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        border: 2px solid rgb(83, 81, 81);
+    }
+
+    
+    .buttons .btn:hover {
+        background: #000000;
+        color: #ffffff;
+        border: 2px solid rgb(108, 106, 106);
+    }
+    
+    
+    .btn.secondary {
+        background: black;
+        color: #fff;
+        border: 2px solid white;
+    }
+    
+    .btn.secondary:hover {
+        background: rgb(255, 255, 255);
+        color: #000000;
+        border: 2px solid rgb(133, 133, 133);
+    }
+
+
+.image-container1 {
+padding: 30px;  
+    }
+
+.image-container1 h1{
+    margin: 10px;  
+     }
+
+.second-bottom-section{
+    width: 50%;
+    align-content: center;
+}
+
+.second-bottom-section h2{
+   padding: 10px 10px 10px 0;
+   font-weight: 500;
+}
+
+.second-bottom-section p{
+width: 90%;
+ }
+
+
+
+ .second-bottom-section .first-bottom-section{
+    width: 70%;
+    height: 100%;
+    justify-items: end;
+    padding-right: 30px;
+    padding-top: 30px;
+
+}
+
+.second-bottom-section  .image-container{
+    max-width: 250px;
+    margin-left: 20px;
+    
+}
+
+
+.second-bottom-section .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        flex-shrink: 0;  
+    }
+
+
+
+
+    /* Tiny phones */
+@media (max-width: 320px) {
+    .overlay-content {
+        width: 100%;
+        padding-left: 10px;
+    }
+
+    .card, .second {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .second-bottom-section .image-container {
+        max-width: 180px;
+    }
+
+    .bottom-section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .first-bottom-section, .second-bottom-section {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: start;
+        padding-left: 10px;
+    }
+
+    .buttons .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+/* Phones */
+@media (min-width: 321px) and (max-width: 480px) {
+    .overlay-content {
+        width: 90%;
+        padding-left: 20px;
+    }
+
+    .card, .second {
+        width: 100%;
+    }
+
+    .bottom-section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .first-bottom-section, .second-bottom-section {
+        width: 100%;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .buttons .btn {
+        margin: 8px 0;
+    }
+}
+
+/* Phones landscape and small tablets */
+@media (min-width: 481px) and (max-width: 767px) {
+    .overlay-content {
+        width: 85%;
+        padding-left: 30px;
+    }
+
+    .card {
+        width: 90%;
+    }
+
+    .second {
+        width: 90%;
+    }
+
+    .bottom-section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .first-bottom-section, .second-bottom-section {
+        width: 100%;
+    }
+}
+
+/* Tablets portrait */
+@media (min-width: 768px) and (max-width: 834px) {
+    .overlay-content {
+        width: 80%;
+    }
+
+    .card {
+        width: 80%;
+    }
+
+    .second {
+        width: 80%;
+    }
+
+    .bottom-section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .first-bottom-section, .second-bottom-section {
+        width: 100%;
+    }
+}
+
+/* Tablets landscape */
+@media (min-width: 835px) and (max-width: 1023px) {
+    .overlay-content {
+        width: 75%;
+    }
+
+    .card {
+        width: 45%;
+    }
+
+    .second {
+        width: 90%;
+    }
+
+    .bottom-section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .first-bottom-section, .second-bottom-section {
+        width: 100%;
+    }
+}
+
+/* Small laptops */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .overlay-content {
+        width: 70%;
+    }
+
+    .card {
+        width: 40%;
+    }
+
+    .second {
+        width: 60%;
+    }
+}
+
+/* Medium desktops */
+@media (min-width: 1280px) and (max-width: 1439px) {
+    .overlay-content {
+        width: 60%;
+    }
+
+    .card {
+        width: 340px;
+    }
+}
+
+/* Large desktops */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .card {
+        width: 340px;
+    }
+
+    .second {
+        width: 60%;
+    }
+}
+
+/* Full HD and 2K screens */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    .card {
+        width: 360px;
+    }
+
+    .overlay-content {
+        width: 50%;
+    }
+}
+
+/* 4K and up */
+@media (min-width: 2560px) {
+    .card {
+        width: 380px;
+    }
+
+    .overlay-content {
+        width: 45%;
+    }
+
+    .hero {
+        height: 80vh;
+    }
+}

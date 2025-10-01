@@ -1,0 +1,421 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* HERO SECTION */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.hero img {
+right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+    
+}
+
+/* Overlay Effect */
+.overlay {
+    background: rgba(0, 0, 0, 0.352); /* Dark overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    color: white;
+    padding: 20px;
+    position: absolute;
+    inset: 0; /* Covers the entire hero section */
+}
+
+.overlay-content{
+    width: 60%;
+    padding-left: 45px;
+}
+
+/* Buttons */
+.buttons {
+margin-top: 20px;
+padding-left: 40px;
+}
+
+.buttons .btn {
+    background: #fff;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.buttons .btn:hover {
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid rgb(108, 106, 106);
+}
+
+
+.btn.secondary {
+    background: black;
+    color: #fff;
+    border: 2px solid white;
+}
+
+.btn.secondary:hover {
+    background: rgb(255, 255, 255);
+    color: #000000;
+    border: 2px solid rgb(133, 133, 133);
+}
+
+/* Services Section */
+.services {
+    padding: 5px 2px;
+    background: #f9f9f9;
+}
+
+
+
+.services-tittle {
+    width: 100%;
+    justify-items: center;
+    padding: 40px 10px;
+    }
+
+    .services-tittle h2{
+        font-family: 'Orbitron', monospace;
+        font-size: 16px;
+        font-weight: 500;
+}
+
+.service-cards { 
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+   
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    width: 340px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: ease-in-out 0.2s;
+}
+
+.card:hover {
+transform: scale(0.9);
+}
+
+.card h3{
+    background: white;
+    padding: 20px 0;
+}
+
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+a {
+    margin-top: 20px;
+    text-decoration: none;
+    color: #000000;
+    font-weight: 600;
+}
+
+.bottom-section{
+margin-top: 30px;
+
+height: 70vh;
+display: flex;
+flex-direction: row;
+background: white;
+
+
+}
+
+.first-bottom-section{
+    width: 40%;
+    height: 100%;
+    justify-items: end;
+    padding-right: 30px;
+    padding-top: 30px;
+
+}
+
+.image-container{
+    max-width: 260px;
+    margin-right: 20px;
+    
+}
+
+
+.image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        flex-shrink: 0;  
+    }
+
+.second-bottom-section{
+    width: 60%;
+    align-content: center;
+}
+
+.second-bottom-section h2{
+   padding: 10px 10px 10px 0;
+   font-weight: 500;
+}
+
+.second-bottom-section p{
+width: 90%;
+ }
+
+ .bottom-btn{
+    background: #000000;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 2px solid rgb(255, 255, 255);
+    transition: ease 0.2s;
+ }
+
+ .bottom-btn:hover{
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid black;
+ }
+
+
+
+ /* Tiny phones */
+@media (max-width: 320px) {
+.hero {
+height: 90vh;
+    
+}
+
+    .overlay-content {
+        width: 90%;
+        padding-left: 10px;
+    }
+
+    .buttons {
+        padding-left: 1px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .buttons .btn {
+        font-size: 14px;
+        padding: 8px 7px;
+        width: 100%;
+    }
+
+    .bottom-section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .first-bottom-section,
+    .second-bottom-section {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .second-bottom-section p {
+        width: 100%;
+    }
+
+    .bottom-btn {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* Phones */
+@media (min-width: 321px) and (max-width: 480px) {
+    .hero {
+height: 90vh;
+    
+}
+
+    .overlay-content {
+        width: 90%;
+        padding-left: 15px;
+    }
+
+    .buttons {
+        padding-left: 15px;
+        flex-direction: column;
+    }
+
+    .buttons .btn {
+        font-size: 15px;
+        padding: 10px 16px;
+    }
+
+    .bottom-section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .first-bottom-section,
+    .second-bottom-section {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .second-bottom-section p {
+        width: 100%;
+    }
+}
+
+/* Phones landscape and small tablets */
+@media (min-width: 481px) and (max-width: 767px) {
+    .overlay-content {
+        width: 85%;
+        padding-left: 25px;
+    }
+
+    .buttons {
+        padding-left: 25px;
+    }
+
+    .buttons .btn {
+        font-size: 15px;
+        padding: 10px 20px;
+    }
+
+    .bottom-section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .first-bottom-section,
+    .second-bottom-section {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+/* Tablets portrait */
+@media (min-width: 768px) and (max-width: 834px) {
+    .overlay-content {
+        width: 75%;
+        padding-left: 35px;
+    }
+
+    .buttons {
+        padding-left: 30px;
+    }
+
+    .bottom-section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .first-bottom-section,
+    .second-bottom-section {
+        width: 100%;
+        padding: 25px;
+    }
+}
+
+/* Tablets landscape */
+@media (min-width: 835px) and (max-width: 1023px) {
+    .overlay-content {
+        width: 70%;
+        padding-left: 40px;
+    }
+
+    .bottom-section {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .first-bottom-section,
+    .second-bottom-section {
+        width: 50%;
+        padding: 30px;
+    }
+}
+
+/* Small laptops */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .overlay-content {
+        width: 65%;
+    }
+
+    .bottom-section {
+        height: auto;
+        flex-direction: row;
+    }
+
+    .first-bottom-section {
+        width: 40%;
+    }
+
+    .second-bottom-section {
+        width: 60%;
+    }
+}
+
+/* Medium desktops */
+@media (min-width: 1280px) and (max-width: 1439px) {
+    .overlay-content {
+        width: 60%;
+    }
+}
+
+/* Large desktops */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .overlay-content {
+        width: 60%;
+    }
+}
+
+/* Full HD and 2K screens */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    .overlay-content {
+        width: 50%;
+    }
+
+    .bottom-section {
+        padding: 40px 60px;
+    }
+}
+
+/* 4K and up */
+@media (min-width: 2560px) {
+    .overlay-content {
+        width: 40%;
+    }
+
+    .overlay {
+        padding: 60px;
+    }
+
+    .bottom-section {
+        padding: 60px 80px;
+    }
+}

@@ -1,0 +1,152 @@
+
+    .last_part {
+    background: #fff;
+    padding: 32px 0 0 0;
+    border-top: 1px solid #e5e5e5;
+    font-family: Arial, 'SamsungOne', sans-serif;
+}
+
+.content_container {
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+
+.box_container4 {
+    flex: 1 1 0;
+    min-width: 160px;
+    padding: 0 32px;
+    border-top: 1px solid #d1cfcf;
+    border-right: 1px solid #d1cfcf;
+    box-sizing: border-box;
+}
+
+.box_container4:last-child {
+    border-right: none;
+}
+
+.box_container4 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tittles {
+    font-weight: bold;
+    font-size: 18px;
+    color: #222;
+    margin-bottom: 18px;
+    margin-top: 0;
+    padding-bottom: 6px;
+    letter-spacing: 0.01em;
+}
+
+.items {
+    font-size: 15px;
+    margin-bottom: 11px;
+    color: #222;
+    line-height: 1.7;
+}
+
+.items a {
+    color: #222;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 400;
+}
+
+.items a:hover {
+    color: #1428a0;
+    text-decoration: underline;
+}
+
+/* Social Icons (if you want to keep them) */
+.social-icon-container {
+    width: 100%;
+     border-top: 1px solid #e5e5e5;
+    padding: 32px 0 32px 0;
+    margin: 32px 0 0 0;
+    text-align: center;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 0;
+}
+
+.icons li {
+    list-style: none;
+}
+
+.icons a {
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #f2f2f2;
+    color: #707070;
+    line-height: 38px;
+    text-align: center;
+    font-size: 18px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.icons a:hover {
+    background: #1428a0;
+    color: #fff;
+}
+
+footer {
+    background: #fff;
+    border-top: 1px solid #e5e5e5;
+    text-align: left;
+    padding: 18px 0 12px 0;
+    font-size: 13px;
+    color: #000000;
+    margin-top: 0;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer p {
+    margin: 0 0 0 12px;
+}
+
+@media (max-width: 1100px) {
+    .content_container {
+        flex-wrap: wrap;
+    }
+    .box_container4 {
+        min-width: 220px;
+        padding: 0 18px;
+    }
+}
+
+@media (max-width: 800px) {
+    .content_container {
+        flex-direction: column;
+        border: none;
+    }
+    .box_container4 {
+        border: none;
+        border-bottom: 1px solid #e5e5e5;
+        width: 100%;
+        padding: 18px 0;
+    }
+    .box_container4:last-child {
+        border-bottom: none;
+    }
+    footer {
+        text-align: center;
+        padding-left: 0;
+    }
+    footer p {
+        margin-left: 0;
+    }
+}

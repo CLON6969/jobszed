@@ -1,0 +1,32 @@
+
+
+.icons-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px auto;
+}
+
+.icons {
+display: flex;
+flex-direction: row;
+align-items: center;
+margin: 5px 10px;
+font-size: 15px;
+font-weight: 700;
+}
+ 
+.partiners i{
+    margin-right: 10px;
+    background: #24080800;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    font-size: 1.25rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.icon:hover {
+    text-decoration: underline;
+}

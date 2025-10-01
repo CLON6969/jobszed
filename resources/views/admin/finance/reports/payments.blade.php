@@ -1,0 +1,68 @@
+@extends('layouts.admin')
+
+@section('title', 'Payments Report')
+
+@section('content')
+<div class="container mx-auto px-4 py-6">
+    <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4">💰 Payments Report</h1>
+
+    {{-- Filters --}}
+    @include('admin.finance.reports.partials.filters', ['type' => 'payments'])
+
+    {{-- Table --}}
+    <div class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-x-auto">
+        <table class="min-w-full text-sm text-gray-700 dark:text-gray-200">
+            <thead class="bg-gray-100 dark:bg-gray-700 text-xs uppercase">
+                <tr>
+                    <th class="px-4 py-2">Payment ID</th>
+                    <th class="px-4 py-2">Payer</th>
+                    <th class="px-4 py-2">Method</th>
+                    <th class="px-4 py-2">Amount</th>
+                    <th class="px-4 py-2">Currency</th>
+                    <th class="px-4 py-2">Transaction ID</th>
+                    <th class="px-4 py-2">Reference</th>
+                    <th class="px-4 py-2">Status</th>
+                    <th class="px-4 py-2">Paid Date</th>
+                    <th class="px-4 py-2">Linked To</th>
+                    <th class="px-4 py-2">Gateway Response</th>
+                    <th class="px-4 py-2">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($payments as $payment)
+                <tr class="border-t border-gray-200 dark:border-gray-700">
+                    <td class="px-4 py-2">{{ $payment->id }}</td>
+                    <td class="px-4 py-2">{{ $payment->payer->name ?? 'N/A' }}</td>
+                    <td class="px-4 py-2">{{ $payment->method }}</td>
+                    <td class="px-4 py-2">{{ $payment->amount }}</td>
+                    <td class="px-4 py-2">{{ $payment->currency }}</td>
+                    <td class="px-4 py-2">{{ $payment->transaction_id }}</td>
+                    <td class="px-4 py-2">{{ $payment->reference }}</td>
+                    <td class="px-4 py-2">{{ ucfirst($payment->status) }}</td>
+                    <td class="px-4 py-2">{{ $payment->paid_at?->format('Y-m-d H:i') ?? '—' }}</td>
+                    <td class="px-4 py-2">
+                        @if ($payment->subscription)
+                            Sub #{{ $payment->subscription->id }}
+                        @elseif ($payment->invoice)
+                            Inv #{{ $payment->invoice->invoice_number }}
+                        @else
+                            —
+                        @endif
+                    </td>
+                    <td class="px-4 py-2 text-xs">{{ Str::limit($payment->gateway_response, 50) }}</td>
+                    <td class="px-4 py-2 text-xs">{{ $payment->notes }}</td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="12" class="text-center px-4 py-6 text-gray-500">No payments found.</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-6">
+        {{ $payments->links() }}
+    </div>
+</div>
+@endsection
