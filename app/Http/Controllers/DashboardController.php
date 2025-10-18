@@ -23,12 +23,12 @@ class DashboardController extends Controller
 
     public function user()
     {
-        return view('user.dashboard');
+        return view('user.Customer.dashboard');
     }
 
-        public function employer()
+        public function Seller()
     {
-        return view('user.employer.dashboard');
+        return view('Seller.dashboard');
     }
 
 
@@ -44,7 +44,7 @@ public function jobUserSummary()
     $applicationsToday = JobApplication::whereDate('created_at', now()->toDateString())->count();
 
     // Users by role
-    $applicants = User::where('role_id', 3)->count(); // applicants role_id = 3
+    $Customers = User::where('role_id', 3)->count(); // Customers role_id = 3
     $staff = User::where('role_id', 2)->count();      // staff role_id = 2
     $totalUsers = User::count();
 
@@ -75,7 +75,7 @@ public function jobUserSummary()
         'closedJobs',
         'totalApplications',
         'applicationsToday',
-        'applicants',
+        'Customers',
         'staff',
         'totalUsers',
         'totalShortlisted',
@@ -89,7 +89,7 @@ public function jobUserSummary()
 
 
 
-    public function applicant()
+    public function Customer()
     {
         $user = Auth::user();
 
@@ -97,6 +97,6 @@ public function jobUserSummary()
             return redirect()->route('onboarding.step1');
         }
 
-        return view('user.applicant.dashboard');
+        return view('user.Customer.dashboard');
     }
 }

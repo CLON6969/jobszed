@@ -42,7 +42,7 @@ public function edit(Request $request): View
     // Calculate completion percentage
     $profileCompletion = round(($filledCount / count($profileFields)) * 100);
 
-    return view('user.applicant.profile-account.index', [
+    return view('user.Customer.profile-account.index', [
         'user' => $user,
         'profileCompletion' => $profileCompletion, // pass to Blade
     ]);
@@ -80,7 +80,7 @@ public function edit(Request $request): View
 
         $user->save();
 
-        return Redirect::route('user.applicant.profile-account.index')
+        return Redirect::route('user.Customer.profile-account.index')
             ->with('status', 'profile-updated');
     }
 

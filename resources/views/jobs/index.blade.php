@@ -57,15 +57,42 @@
             </div>
 
             <!-- Category -->
-            <select name="category"
-                    class="py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 
-                           bg-white dark:bg-gray-700 text-sm focus:ring-2 focus:ring-indigo-500"
-                    data-aos="fade-up" data-aos-delay="200">
-                <option value="">All Categories</option>
-                <option value="IT" @if(request('category') == 'IT') selected @endif>IT</option>
-                <option value="Finance" @if(request('category') == 'Finance') selected @endif>Finance</option>
-                <option value="Education" @if(request('category') == 'Education') selected @endif>Education</option>
-            </select>
+<select name="category"
+    class="py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 
+           bg-white dark:bg-gray-700 text-sm focus:ring-2 focus:ring-indigo-500 w-full"
+    data-aos="fade-up" data-aos-delay="200">
+
+    <option value="">All Categories</option>
+
+    <option value="Information Technology" @if(request('category') == 'Information Technology') selected @endif>Information Technology</option>
+    <option value="Finance & Accounting" @if(request('category') == 'Finance & Accounting') selected @endif>Finance & Accounting</option>
+    <option value="Education & Training" @if(request('category') == 'Education & Training') selected @endif>Education & Training</option>
+    <option value="Healthcare & Medical" @if(request('category') == 'Healthcare & Medical') selected @endif>Healthcare & Medical</option>
+    <option value="Engineering & Technical" @if(request('category') == 'Engineering & Technical') selected @endif>Engineering & Technical</option>
+    <option value="Sales & Marketing" @if(request('category') == 'Sales & Marketing') selected @endif>Sales & Marketing</option>
+    <option value="Customer Service & Support" @if(request('category') == 'Customer Service & Support') selected @endif>Customer Service & Support</option>
+    <option value="Administration & Office Support" @if(request('category') == 'Administration & Office Support') selected @endif>Administration & Office Support</option>
+    <option value="Human Resources" @if(request('category') == 'Human Resources') selected @endif>Human Resources</option>
+    <option value="Construction & Property" @if(request('category') == 'Construction & Property') selected @endif>Construction & Property</option>
+    <option value="Transport & Logistics" @if(request('category') == 'Transport & Logistics') selected @endif>Transport & Logistics</option>
+    <option value="Manufacturing & Production" @if(request('category') == 'Manufacturing & Production') selected @endif>Manufacturing & Production</option>
+    <option value="Agriculture & Farming" @if(request('category') == 'Agriculture & Farming') selected @endif>Agriculture & Farming</option>
+    <option value="Legal & Compliance" @if(request('category') == 'Legal & Compliance') selected @endif>Legal & Compliance</option>
+    <option value="Media & Communications" @if(request('category') == 'Media & Communications') selected @endif>Media & Communications</option>
+    <option value="Design, Arts & Creative" @if(request('category') == 'Design, Arts & Creative') selected @endif>Design, Arts & Creative</option>
+    <option value="Hospitality & Tourism" @if(request('category') == 'Hospitality & Tourism') selected @endif>Hospitality & Tourism</option>
+    <option value="Retail & Consumer Services" @if(request('category') == 'Retail & Consumer Services') selected @endif>Retail & Consumer Services</option>
+    <option value="Nonprofit & NGO" @if(request('category') == 'Nonprofit & NGO') selected @endif>Nonprofit & NGO</option>
+    <option value="Government & Public Sector" @if(request('category') == 'Government & Public Sector') selected @endif>Government & Public Sector</option>
+    <option value="Science & Research" @if(request('category') == 'Science & Research') selected @endif>Science & Research</option>
+    <option value="Security & Defence" @if(request('category') == 'Security & Defence') selected @endif>Security & Defence</option>
+    <option value="Real Estate" @if(request('category') == 'Real Estate') selected @endif>Real Estate</option>
+    <option value="Energy & Environment" @if(request('category') == 'Energy & Environment') selected @endif>Energy & Environment</option>
+    <option value="Sports & Recreation" @if(request('category') == 'Sports & Recreation') selected @endif>Sports & Recreation</option>
+    <option value="Telecommunications" @if(request('category') == 'Telecommunications') selected @endif>Telecommunications</option>
+    <option value="Others" @if(request('category') == 'Others') selected @endif>Others</option>
+</select>
+
 
             <!-- Location -->
             <select name="location"
@@ -102,51 +129,113 @@
 
 <!-- JOB LISTINGS -->
 <main class="py-16 bg-gray-100 dark:bg-gray-900">
-    <div class="max-w-7xl mx-auto grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-6">
+    <div class="max-w-8xl mx-auto grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-6">
 
-        @foreach ($jobs as $job)
-            <a href="{{ route('jobs.show', $job->slug) }}"
-               class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition p-6 flex flex-col justify-between"
-               data-aos="fade-up" data-aos-duration="800">
+     @foreach ($jobs as $job)
+    @php
+        // Poster (relationship)
+        $poster = $job->user ?? $job->employer ?? $job->poster ?? null;
 
-                <!-- Top: Logo & Location -->
-                <div class="flex justify-between items-start">
-                    <img src="{{ asset('/public/storage/uploads/logo/' . $logo->picture) }}" 
-                         class="w-12 h-12 rounded-md" alt="logo">
+        // Profile picture & name
+        $posterProfile = $poster && $poster->profile_picture 
+            ? asset('public/storage/' . $poster->profile_picture)
+            : asset('public/uploads/pics/logo1.png');
 
-                    <div class="text-right text-sm text-gray-600 dark:text-gray-400">
-                        <p class="font-semibold">{{ $job->country ?? 'N/A' }}</p>
-                        <p>{{ $job->location ?? 'N/A' }}</p>
-                    </div>
-                </div>
+        $posterName = $poster && $poster->name ? $poster->name : 'Unknown Employer';
+    @endphp
 
-                <!-- Job Info -->
-                <div class="mt-6 space-y-4">
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">
-                        {{ $job->title }}
-                    </h3>
-                    <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-3">
-                        {{ Str::limit(strip_tags($job->description), 150) }}
+    <a href="{{ route('jobs.show', $job->slug) }}"
+       class="block bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 
+              rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 
+              p-8 space-y-6 hover:border-indigo-400">
+
+        <!-- Header: Employer Info -->
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <img src="{{ $posterProfile }}" 
+                     alt="Employer Logo"
+                     class="w-14 h-14 rounded-full object-cover border-2 border-indigo-500 shadow-sm">
+
+                <div class="flex flex-col">
+                    <h4 class="font-semibold text-gray-900 dark:text-white text-lg leading-tight">
+                        {{ $posterName }}
+                    </h4>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        {{ $job->department ?? 'General Department' }}
                     </p>
                 </div>
+            </div>
 
-                <!-- Footer -->
-                <div class="mt-6 flex justify-between items-center text-sm text-gray-600 dark:text-gray-400">
-                    <span class="bg-green-100 text-green-800 dark:bg-green-700 dark:text-green-100 px-3 py-1 rounded-full text-xs font-medium">
+            <div class="text-sm text-gray-500 dark:text-gray-400">
+                <i class="fa-regular fa-clock mr-1 text-indigo-500"></i>
+                {{ $job->created_at ? $job->created_at->diffForHumans() : '—' }}
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <hr class="border-gray-100 dark:border-gray-700">
+
+        <!-- Job Content -->
+        <div class="space-y-3">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white leading-snug hover:text-indigo-600 transition">
+                {{ $job->title }}
+            </h3>
+            <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-3">
+                {{ Str::limit(strip_tags($job->description), 200) }}
+            </p>
+        </div>
+
+        <!-- Info Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mt-4 text-sm text-gray-600 dark:text-gray-400">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-location-dot text-indigo-500"></i>
+                <span>{{ $job->location ?? 'Location not specified' }}</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-hourglass-end text-pink-500"></i>
+                <span>Deadline: {{ $job->application_deadline ? $job->application_deadline->format('M d, Y') : 'N/A' }}</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-briefcase text-amber-500"></i>
+                <span>{{ ucfirst(str_replace('_', ' ', $job->employment_type)) }}</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-flag text-green-600"></i>
+                <span>Status: 
+                    <span class="{{ $job->status == 'open' 
+                        ? 'text-green-700 dark:text-green-400' 
+                        : 'text-red-700 dark:text-red-400' }}">
                         {{ ucfirst($job->status) }}
                     </span>
-                    <span class="font-semibold">
-                        {{ ucfirst(str_replace('_', ' ', $job->employment_type)) }}
-                    </span>
-                </div>
+                </span>
+            </div>
+        </div>
 
-                <div class="mt-4">
-                    <button class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition">
-                        View Details →
-                    </button>
-                </div>
-            </a>
-        @endforeach
+        <!-- Footer -->
+        <div class="pt-6 flex justify-between items-center border-t border-gray-100 dark:border-gray-700 mt-4">
+            <div class="flex gap-3">
+                <span class="px-4 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 
+                            dark:bg-indigo-700 dark:text-indigo-100">
+                    {{ ucfirst(str_replace('_', ' ', $job->employment_type)) }}
+                </span>
+                <span class="px-4 py-1 rounded-full text-xs font-medium 
+                            {{ $job->status == 'open' 
+                                ? 'bg-green-100 text-green-800 dark:bg-green-700 dark:text-green-100' 
+                                : 'bg-red-100 text-red-800 dark:bg-red-700 dark:text-red-100' }}">
+                    {{ ucfirst($job->status) }}
+                </span>
+            </div>
+
+            <button class="px-6 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-lg 
+                           hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all duration-300">
+                View Details →
+            </button>
+        </div>
+    </a>
+@endforeach
 
         @if($jobs->isEmpty())
             <p class="text-gray-600 dark:text-gray-300 text-center col-span-full" data-aos="fade-up">

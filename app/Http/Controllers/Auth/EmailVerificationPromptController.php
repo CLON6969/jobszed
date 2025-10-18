@@ -20,8 +20,8 @@ class EmailVerificationPromptController extends Controller
             return redirect()->intended(match ($user->role_id) {
                 1 => route('admin.dashboard'),
                 2 => route('staff.dashboard'),
-                3 => route('user.employer.dashboard'),
-                4 => route('user.applicant.dashboard'),
+                3 => route('Seller.dashboard'),
+                4 => route('user.Customer.dashboard'),
                 default => '/',
             });
         }

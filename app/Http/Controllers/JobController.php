@@ -25,7 +25,8 @@ class JobController extends Controller
         // ✅ Fetch only active, open, non-expired jobs
         $query = JobPost::query()
             ->where('status', 'open')
-            ->whereDate('application_deadline', '>=', $today);
+            ->whereDate('application_deadline', '>=', $today)
+            ->with('user'); // 👈 include employer relation
 
         // Optional filters
         if ($request->filled('search')) {
@@ -45,6 +46,17 @@ class JobController extends Controller
         }
 
         $jobs = $query->latest()->paginate(12)->withQueryString();
+
+        // ✅ Add "time ago" and fallback for employer profile picture
+        $jobs->getCollection()->transform(function ($job) {
+            $job->posted_time = $job->created_at->diffForHumans();
+            $job->employer_name = $job->user->name ?? 'Unknown Employer';
+            $job->employer_picture = $job->user->profile_picture 
+                ? asset('public/storage/' . $job->user->profile_picture)
+                : asset('public/uploads/pics/default.png');
+            return $job;
+        });
+
         $job_page = Job_page::first();
         $logo = Logo::first();
 
@@ -58,11 +70,17 @@ class JobController extends Controller
     {
         $today = Carbon::today();
 
-        $job = JobPost::with(['skills', 'experiences', 'qualifications', 'questions'])
+        $job = JobPost::with(['skills', 'experiences', 'qualifications', 'questions', 'user'])
             ->where('slug', $slug)
             ->where('status', 'open')
             ->whereDate('application_deadline', '>=', $today)
             ->firstOrFail();
+
+        $job->posted_time = $job->created_at->diffForHumans();
+        $job->employer_name = $job->user->name ?? 'Unknown Employer';
+        $job->employer_picture = $job->user->profile_picture 
+            ? asset('public/storage/' . $job->user->profile_picture)
+            : asset('public/uploads/pics/default.png');
 
         $logo = Logo::first();
 

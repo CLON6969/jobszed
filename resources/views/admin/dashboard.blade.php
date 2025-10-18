@@ -458,10 +458,23 @@ document.addEventListener("hidden.bs.collapse", function (e) {
 });
 
 // Menu items
-createNavButton('Dashboard','fas fa-tachometer-alt','Dashboard','{{ route('admin.admin.job_user_summary') }}');
-createNavButton('Jobs', 'fas fa-briefcase', 'Jobs', '{{ route("admin.web.job.index") }}');
-createNavButton('Applications', 'fas fa-file-alt', 'Applications', '{{ route('admin.web.applications.index') }}');
-createNavButton('Applicant Email', 'fas fa-calendar-alt', 'Applicant Email', '{{ route("admin.web.Email_application_management.index", 1) }}');
+createNavButton('My Profile','fa-solid fa-gears','My Profile','{{ route("admin.profile-account.index") }}');
+createNavButton('Dashboard', 'fa-solid fa-gauge', 'Admin Dashboard', '{{ route("admin.dashboard") }}');
+createNavButton('Users', 'fa-solid fa-users', 'Manage Users', '{{ route("admin.users.index") }}');
+createNavButton('Products', 'fa-solid fa-box', 'Products', '{{ route("admin.products.index") }}');
+createNavButton('Orders', 'fa-solid fa-clipboard-list', 'Orders', '{{ route("admin.orders.index") }}');
+createNavButton('Categories', 'fa-solid fa-layer-group', 'Categories', '{{ route("admin.categories.index") }}');
+createNavButton('Reviews', 'fa-solid fa-star', 'Reviews', '{{ route("admin.reviews.index") }}');
+createNavButton('Messages', 'fa-solid fa-envelope', 'Messages', '{{ route("admin.messages.index") }}');
+createNavButton('Analytics', 'fa-solid fa-chart-line', 'Analytics', '{{ route("admin.analytics.index") }}');
+
+
+
+
+
+
+
+
 
 createDropdown('Web Settings', 'fas fa-globe', 'Web Settings', [
   {

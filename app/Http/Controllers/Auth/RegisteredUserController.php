@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => 4, // Applicant role
+            'role_id' => 4, // Customer role
             'onboarding_complete' => false, // Not yet completed onboarding
         ]);
 
@@ -51,14 +51,14 @@ class RegisteredUserController extends Controller
     }
 
 
-    // Show employer registration form
-public function createEmployer()
+    // Show Seller registration form
+public function createSeller()
 {
-    return view('auth.register-employer');
+    return view('auth.register-Seller');
 }
 
-// Handle employer registration
-public function storeEmployer(Request $request)
+// Handle Seller registration
+public function storeSeller(Request $request)
 {
     $validated = $request->validate([
         'name' => 'required|string|max:255',
@@ -70,13 +70,13 @@ public function storeEmployer(Request $request)
         'name' => $validated['name'],
         'email' => $validated['email'],
         'password' => bcrypt($validated['password']),
-        'role_id' => 3, // employer role
+        'role_id' => 3, // Seller role
     ]);
 
     // You can log them in immediately if desired
     Auth::login($user);
 
-    return redirect()->route('user.employer.dashboard'); // or wherever you want
+    return redirect()->route('Seller.dashboard'); // or wherever you want
 }
 
 

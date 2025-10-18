@@ -1,9 +1,26 @@
 <?php
 
+use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductVariationController;
+use App\Http\Controllers\Admin\ProductMediaController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\OrderItemController;
+use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\GuestSessionController;
+
+
+
+
 // Public Controllers
 use App\Http\Controllers\{
     DashboardController,
-  AdminProfileController
+  AdminProfileController,
+    SellerController,
+   
+
 };
 
 
@@ -33,6 +50,134 @@ use App\Http\Controllers\Web\General\{
 Route::middleware(['auth', 'role:1'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
     Route::view('/loading_count_down', 'loading_count_down')->name('loading_count_down');
+
+
+
+// ====================================================================
+// ZUMHUB ECOSYSTEM MANAGEMENT (Admin full CRUD + monitoring)
+// ====================================================================
+
+/* -------------------------------
+| 👥 USER MANAGEMENT
+--------------------------------*/
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('/', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('index');
+    Route::get('/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('create');
+    Route::post('/', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('store');
+    Route::get('/{user}', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('show');
+    Route::get('/{user}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('edit');
+    Route::put('/{user}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('update');
+    Route::delete('/{user}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('destroy');
+});
+
+/* -------------------------------
+| 🏷️ CATEGORY MANAGEMENT
+--------------------------------*/
+Route::prefix('categories')->name('categories.')->group(function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('index');
+    Route::get('/create', [CategoryController::class, 'create'])->name('create');
+    Route::post('/', [CategoryController::class, 'store'])->name('store');
+    Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('edit');
+    Route::put('/{category}', [CategoryController::class, 'update'])->name('update');
+    Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('destroy');
+});
+
+/* -------------------------------
+| 🛍️ PRODUCT MANAGEMENT
+--------------------------------*/
+Route::prefix('products')->name('products.')->group(function () {
+    Route::get('/', [ProductController::class, 'index'])->name('index');
+    Route::get('/create', [ProductController::class, 'create'])->name('create');
+    Route::post('/', [ProductController::class, 'store'])->name('store');
+    Route::get('/{product}', [ProductController::class, 'show'])->name('show');
+    Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('edit');
+    Route::put('/{product}', [ProductController::class, 'update'])->name('update');
+    Route::delete('/{product}', [ProductController::class, 'destroy'])->name('destroy');
+});
+
+/* -------------------------------
+| 🔀 PRODUCT VARIATIONS
+--------------------------------*/
+Route::prefix('variations')->name('variations.')->group(function () {
+    Route::get('/', [ProductVariationController::class, 'index'])->name('index');
+    Route::get('/create', [ProductVariationController::class, 'create'])->name('create');
+    Route::post('/', [ProductVariationController::class, 'store'])->name('store');
+    Route::get('/{variation}/edit', [ProductVariationController::class, 'edit'])->name('edit');
+    Route::put('/{variation}', [ProductVariationController::class, 'update'])->name('update');
+    Route::delete('/{variation}', [ProductVariationController::class, 'destroy'])->name('destroy');
+});
+
+/* -------------------------------
+| 🖼️ PRODUCT MEDIA
+--------------------------------*/
+Route::prefix('media')->name('media.')->group(function () {
+    Route::get('/', [ProductMediaController::class, 'index'])->name('index');
+    Route::get('/create', [ProductMediaController::class, 'create'])->name('create');
+    Route::post('/', [ProductMediaController::class, 'store'])->name('store');
+    Route::get('/{media}/edit', [ProductMediaController::class, 'edit'])->name('edit');
+    Route::put('/{media}', [ProductMediaController::class, 'update'])->name('update');
+    Route::delete('/{media}', [ProductMediaController::class, 'destroy'])->name('destroy');
+});
+
+/* -------------------------------
+| 📦 ORDERS
+--------------------------------*/
+Route::prefix('orders')->name('orders.')->group(function () {
+    Route::get('/', [OrderController::class, 'index'])->name('index');
+    Route::get('/{order}', [OrderController::class, 'show'])->name('show');
+    Route::put('/{order}/update-status', [OrderController::class, 'updateStatus'])->name('updateStatus');
+    Route::delete('/{order}', [OrderController::class, 'destroy'])->name('destroy');
+});
+
+/* -------------------------------
+| 🧾 ORDER ITEMS
+--------------------------------*/
+Route::prefix('order-items')->name('order-items.')->group(function () {
+    Route::get('/', [OrderItemController::class, 'index'])->name('index');
+    Route::get('/{orderItem}', [OrderItemController::class, 'show'])->name('show');
+    Route::delete('/{orderItem}', [OrderItemController::class, 'destroy'])->name('destroy');
+});
+
+/* -------------------------------
+| 💬 MESSAGES
+--------------------------------*/
+Route::prefix('messages')->name('messages.')->group(function () {
+    Route::get('/', [MessageController::class, 'index'])->name('index');
+    Route::get('/{message}', [MessageController::class, 'show'])->name('show');
+    Route::delete('/{message}', [MessageController::class, 'destroy'])->name('destroy');
+});
+
+/* -------------------------------
+| ⭐ REVIEWS
+--------------------------------*/
+Route::prefix('reviews')->name('reviews.')->group(function () {
+    Route::get('/', [ReviewController::class, 'index'])->name('index');
+    Route::get('/{review}', [ReviewController::class, 'show'])->name('show');
+    Route::put('/{review}/approve', [ReviewController::class, 'approve'])->name('approve');
+    Route::delete('/{review}', [ReviewController::class, 'destroy'])->name('destroy');
+});
+
+/* -------------------------------
+| 🕓 GUEST SESSIONS
+--------------------------------*/
+Route::prefix('guest-sessions')->name('guest-sessions.')->group(function () {
+    Route::get('/', [GuestSessionController::class, 'index'])->name('index');
+    Route::get('/{session}', [GuestSessionController::class, 'show'])->name('show');
+    Route::delete('/{session}', [GuestSessionController::class, 'destroy'])->name('destroy');
+});
+
+/* -------------------------------
+| 📊 ANALYTICS
+--------------------------------*/
+Route::prefix('analytics')->name('analytics.')->group(function () {
+    Route::get('/', [AnalyticsController::class, 'index'])->name('index');
+    Route::get('/events', [AnalyticsController::class, 'events'])->name('events');
+    Route::get('/events/{event}', [AnalyticsController::class, 'show'])->name('show');
+});
+
+
+
+  
 
 Route::get('/job-user-summary', [DashboardController::class, 'jobUserSummary'])->name('admin.job_user_summary');
 

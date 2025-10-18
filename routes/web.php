@@ -41,7 +41,7 @@ Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
 // routes/web.php
 
-Route::middleware(['auth', 'ensure.applicant'])->group(function () {
+Route::middleware(['auth', 'ensure.Customer'])->group(function () {
     Route::get('/apply/{slug}', [ApplicationController::class, 'create'])->name('jobs.apply');
     Route::post('/apply/{slug}', [ApplicationController::class, 'store'])->name('jobs.apply.store');
     
@@ -69,9 +69,10 @@ Route::get('/legal/{slug}', function ($slug) {
 require __DIR__.'/admin.php';
 require __DIR__.'/staff.php';
 require __DIR__.'/user.php';
-require __DIR__.'/employer.php';
-require __DIR__.'/applicant.php';
+require __DIR__.'/seller.php';
+require __DIR__.'/Customer.php';
 require __DIR__.'/auth.php';
+require __DIR__.'/api.php';
 
 
 Route::get('/login', function () {
@@ -79,8 +80,8 @@ Route::get('/login', function () {
         return redirect()->route(match (auth()->user()->role_id) {
             1 => 'admin.dashboard',
             2 => 'staff.dashboard',
-            3 => 'user.employer.dashboard',
-            4 => 'user.applicant.dashboard',
+            3 => 'Seller.dashboard',
+            4 => 'user.Customer.dashboard',
         });
     }
 
@@ -92,23 +93,11 @@ Route::get('/register', function () {
         return redirect()->route(match (auth()->user()->role_id) {
             1 => 'admin.dashboard',
             2 => 'staff.dashboard',
-            3 => 'user.employer.dashboard',
-            4 => 'user.applicant.dashboard',
+            3 => 'Seller.dashboard',
+            4 => 'user.Customer.dashboard',
         });
     }
 
     return view('auth.register');
 })->name('register');
 
-Route::get('/register/employer', function () {
-    if (auth()->check()) {
-        return redirect()->route(match (auth()->user()->role_id) {
-            1 => 'admin.dashboard',
-            2 => 'staff.dashboard',
-            3 => 'user.employer.dashboard',
-            4 => 'user.applicant.dashboard',
-        });
-    }
-
-    return view('auth.register');
-})->name('register');

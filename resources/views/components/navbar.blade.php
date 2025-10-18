@@ -74,8 +74,8 @@
             {{-- CTA Button --}}
             <div class="hidden md:flex">
                 <a href="register/employer" 
-                   class="bg-blue-900 text-green-400 font-semibold px-5 py-2 rounded-md hover:bg-blue-800 transition">
-                   Post job (free)
+                   class="bg-blue-700 text-black font-semibold px-5 py-2 rounded-md hover:bg-blue-800 transition">
+                   Post  (free)
                 </a>
             </div>
 
@@ -118,8 +118,8 @@
                         @endforeach
                         <li class="w-full">
                             <a href="register/employer" 
-                               class="block bg-blue-900 text-green-400 text-center w-full px-5 py-2 rounded-md hover:bg-blue-800 transition">
-                               Post Job (free)
+                               class="block bg-blue-700 text-black text-center w-full px-5 py-2 rounded-md hover:bg-blue-800 transition">
+                               Post  (free)
                             </a>
                         </li>
                     </ul>
