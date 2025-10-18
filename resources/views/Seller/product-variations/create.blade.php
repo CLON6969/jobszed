@@ -9,30 +9,39 @@
 
     <div class="mb-4">
         <label class="block text-gray-700 mb-1">Product</label>
-        <select name="product_id" class="border rounded w-full p-2" required>
+        <select name="product_id" class="border rounded w-full p-2 @error('product_id') border-red-500 @enderror" required>
             <option value="">Select Product</option>
             @foreach($sellerProducts as $p)
-                <option value="{{ $p->id }}">{{ $p->name }}</option>
+                <option value="{{ $p->id }}" {{ old('product_id') == $p->id ? 'selected' : '' }}>{{ $p->name }}</option>
             @endforeach
         </select>
+        @error('product_id') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
             <label class="block text-gray-700 mb-1">Variation Name</label>
-            <input type="text" name="name" value="{{ old('name') }}" class="border rounded w-full p-2" required>
+            <input type="text" name="name" value="{{ old('name') }}" 
+                   class="border rounded w-full p-2 @error('name') border-red-500 @enderror" required>
+            @error('name') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
         <div>
             <label class="block text-gray-700 mb-1">Option</label>
-            <input type="text" name="option" value="{{ old('option') }}" class="border rounded w-full p-2" required>
+            <input type="text" name="option" value="{{ old('option') }}" 
+                   class="border rounded w-full p-2 @error('option') border-red-500 @enderror" required>
+            @error('option') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
         <div>
             <label class="block text-gray-700 mb-1">Price Adjustment</label>
-            <input type="number" step="0.01" name="price_adjustment" value="{{ old('price_adjustment') }}" class="border rounded w-full p-2">
+            <input type="number" step="0.01" name="price_adjustment" value="{{ old('price_adjustment') }}" 
+                   class="border rounded w-full p-2 @error('price_adjustment') border-red-500 @enderror">
+            @error('price_adjustment') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
         <div>
             <label class="block text-gray-700 mb-1">Stock</label>
-            <input type="number" name="stock" value="{{ old('stock') }}" class="border rounded w-full p-2" required>
+            <input type="number" name="stock" value="{{ old('stock') }}" 
+                   class="border rounded w-full p-2 @error('stock') border-red-500 @enderror" required>
+            @error('stock') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
     </div>
 

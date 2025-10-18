@@ -41,7 +41,7 @@ class ProductFullController extends Controller
         return view('Seller.products.create-full', compact('categories'));
     }
 
-   public function store(Request $request)
+  public function store(Request $request)
 {
     $seller = Auth::user();
     if ($seller->role_id !== 3) abort(403, 'Unauthorized');

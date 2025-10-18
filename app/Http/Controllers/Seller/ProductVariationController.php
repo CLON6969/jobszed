@@ -11,20 +11,18 @@ use Illuminate\Support\Facades\Auth;
 class ProductVariationController extends Controller
 {
     /**
-     * Display a list of all variations belonging to the seller’s products.
+     * Display a list of seller's products with the count of variations.
      */
     public function index()
     {
         $sellerId = Auth::id();
 
-        $variations = ProductVariation::whereHas('product', function ($query) use ($sellerId) {
-            $query->where('seller_id', $sellerId);
-        })
-        ->with('product')
-        ->latest()
-        ->paginate(20);
+        $products = Product::where('seller_id', $sellerId)
+            ->withCount('variations')
+            ->latest()
+            ->get(); // show all products; use paginate() if needed
 
-        return view('Seller.product-variations.index', compact('variations'));
+        return view('Seller.product-variations.index', compact('products'));
     }
 
     /**
@@ -50,7 +48,6 @@ class ProductVariationController extends Controller
             'stock' => 'required|integer|min:0',
         ]);
 
-        // Ensure product belongs to seller
         $product = Product::where('id', $validated['product_id'])
             ->where('seller_id', Auth::id())
             ->firstOrFail();
@@ -62,16 +59,16 @@ class ProductVariationController extends Controller
     }
 
     /**
-     * Display a single product variation.
+     * Display all variations for a specific product.
      */
     public function show($id)
     {
-        $variation = ProductVariation::with('product')
+        $product = Product::with('variations')
             ->where('id', $id)
-            ->whereHas('product', fn($q) => $q->where('seller_id', Auth::id()))
+            ->where('seller_id', Auth::id())
             ->firstOrFail();
 
-        return view('Seller.product-variations.show', compact('variation'));
+        return view('Seller.product-variations.show', compact('product'));
     }
 
     /**
