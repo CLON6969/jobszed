@@ -22,6 +22,7 @@ class ProfileUpdateRequest extends FormRequest
             'email' => ['required','string','lowercase','email','max:255',Rule::unique(User::class)->ignore($this->user()->id),],
              'username' => ['nullable', 'string', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
+            'whatsapp' => ['nullable', 'string', 'max:50'],
             'address' => ['nullable', 'string', 'max:255'],
             'city' => ['nullable', 'string', 'max:100'],
             'state' => ['nullable', 'string', 'max:100'],

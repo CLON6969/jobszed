@@ -70,14 +70,17 @@
                     </li>
                 @endforeach
             </ul>
-
-            {{-- CTA Button --}}
+ {{--  first button , there is a similler one at the botton, enable both
+         
             <div class="hidden md:flex">
                 <a href="register/employer" 
                    class="bg-blue-700 text-black font-semibold px-5 py-2 rounded-md hover:bg-blue-800 transition">
                    Post  (free)
                 </a>
             </div>
+
+            --}}
+
 
             {{-- Mobile Hamburger --}}
             <div class="md:hidden flex items-center" x-data="{ mobileOpen: false }">
@@ -116,12 +119,17 @@
                                 @endif
                             </li>
                         @endforeach
+
+                         {{-- this is a button
+
                         <li class="w-full">
                             <a href="register/employer" 
                                class="block bg-blue-700 text-black text-center w-full px-5 py-2 rounded-md hover:bg-blue-800 transition">
                                Post  (free)
                             </a>
                         </li>
+
+                          --}}
                     </ul>
                 </div>
             </div>

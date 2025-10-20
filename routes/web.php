@@ -2,6 +2,8 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Guest\GuestMessageController;
+use App\Http\Controllers\Guest\GuestReviewController;
 
 // Models baing used 
 use App\Models\{
@@ -21,34 +23,60 @@ AboutController
 };
 
 
-Route::get('/', [HomeController::class, 'index']);
+
+
+// ----------------------
+// Public Routes
+// ----------------------
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/product/{id}', [HomeController::class, 'show'])->name('home.show');
+Route::post('/product/{id}/save', [HomeController::class, 'save'])->name('home.save');
+Route::post('/product/{id}/review', [HomeController::class, 'review'])->name('home.review');
+Route::post('/product/{id}/message', [HomeController::class, 'message'])->name('home.message');
+
+
 
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
-Route::get('/support', [supportController::class, 'show'])->name('support.form');
-Route::post('/support', [supportController::class, 'submit'])->name('support.submit');
+Route::get('/support', [SupportController::class, 'show'])->name('support.form');
+Route::post('/support', [SupportController::class, 'submit'])->name('support.submit');
 
-Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
-Route::get('/jobs/{slug}', [JobController::class, 'show'])->name('jobs.show');
+
 
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
+Route::get('/legal/{slug}', function ($slug) {
+    $document = LegalDocument::where('slug', $slug)->with(['sections.listItems'])->firstOrFail();
+    return view('legal.show', compact('document'));
+})->name('legal.show');
 
+Route::view('/loading_count_down', 'loading_count_down')->name('loading_count_down');
 
-// routes/web.php
-
-
-// routes/web.php
-
-Route::middleware(['auth', 'ensure.Customer'])->group(function () {
-    Route::get('/apply/{slug}', [ApplicationController::class, 'create'])->name('jobs.apply');
-    Route::post('/apply/{slug}', [ApplicationController::class, 'store'])->name('jobs.apply.store');
-    
+// ----------------------
+// Auth-Protected Product Actions
+// ----------------------
+Route::prefix('products')->name('products.')->group(function () {
+    Route::middleware('auth')->group(function () {
+        Route::post('/{product}/save', [HomeController::class, 'save'])->name('home.save');
+        Route::post('/{product}/review', [HomeController::class, 'review'])->name('review');
+        Route::post('/{product}/message', [HomeController::class, 'message'])->name('message');
+    });
 });
 
+// ----------------------
+// Guest Enquiries
+// ----------------------
+Route::prefix('guest')->name('guest.')->group(function () {
+    Route::prefix('inquiry')->name('inquiry.')->group(function () {
+        Route::post('/send-whatsapp', [GuestMessageController::class, 'sendViaWhatsApp'])->name('sendWhatsApp');
+        Route::post('/send-email', [GuestMessageController::class, 'sendViaEmail'])->name('sendEmail');
+    });
 
-
+    Route::prefix('reviews')->name('reviews.')->group(function () {
+        Route::post('/{productId}', [GuestReviewController::class, 'guestStore'])->name('store');
+    });
+});
 
 
 
@@ -81,7 +109,7 @@ Route::get('/login', function () {
             1 => 'admin.dashboard',
             2 => 'staff.dashboard',
             3 => 'Seller.dashboard',
-            4 => 'user.Customer.dashboard',
+            4 => 'Customer.dashboard',
         });
     }
 
@@ -94,7 +122,7 @@ Route::get('/register', function () {
             1 => 'admin.dashboard',
             2 => 'staff.dashboard',
             3 => 'Seller.dashboard',
-            4 => 'user.Customer.dashboard',
+            4 => 'Customer.dashboard',
         });
     }
 

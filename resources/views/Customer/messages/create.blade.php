@@ -1,4 +1,4 @@
-@extends('layouts.customer')
+@extends('layouts.Customer')
 
 @section('content')
 <h2 class="text-2xl font-semibold mb-4">Start a Conversation</h2>

@@ -40,3 +40,5 @@ class Seller extends Model
         return $this->hasMany(AnalyticsEvent::class);
     }
 }
+
+

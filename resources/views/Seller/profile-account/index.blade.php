@@ -127,6 +127,16 @@
                     @enderror
                 </div>
 
+                <!-- WhatsApp -->
+<div class="mb-4">
+    <label class="block text-sm font-medium text-gray-700 mb-1">WhatsApp</label>
+    <input type="text" name="whatsapp" value="{{ old('whatsapp', $user->whatsapp) }}"
+           class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 @error('whatsapp') border-red-500 @enderror">
+    @error('whatsapp')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
+
                 <!-- Address -->
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
@@ -289,3 +299,4 @@ document.getElementById('myForm').addEventListener('submit', function() {
 });
 </script>
 @endsection
+

@@ -1,24 +1,34 @@
-@extends('layouts.seller')
+{{-- resources/views/Seller/messages/index.blade.php --}}
+@extends('layouts.Seller')
 
 @section('content')
-<div class="container">
-    <h2>Customer Conversations</h2>
-    <div class="list-group mt-4">
-        @forelse($threads as $key => $thread)
-            @php
-                $first = $thread->first();
-                $other = $first->sender_id == auth()->id() ? $first->receiver : $first->sender;
-                $product = $first->product;
-            @endphp
+<div class="max-w-5xl mx-auto bg-white shadow rounded-lg p-6">
+    <h2 class="text-xl font-semibold mb-4">Messages</h2>
 
-            <a href="{{ route('Seller.messages.show', [$other->id, $product->id ?? null]) }}" class="list-group-item list-group-item-action">
-                <strong>{{ $other->name ?? 'Guest' }}</strong><br>
-                <small>{{ $product->name ?? 'General Inquiry' }}</small><br>
-                <span class="text-muted">{{ Str::limit($thread->last()->content, 50) }}</span>
-            </a>
-        @empty
-            <p>No conversations yet.</p>
-        @endforelse
-    </div>
+    @if($threads->isEmpty())
+        <p class="text-gray-500">No conversations yet.</p>
+    @else
+        <ul class="divide-y divide-gray-200">
+            @foreach($threads as $key => $messages)
+                @php
+                    $first = $messages->last();
+                    [$otherUserId, $productId] = explode('_', $key);
+                    $otherUser = $first->sender_id === auth()->id() ? $first->receiver : $first->sender;
+                @endphp
+                <li class="py-3 flex items-center justify-between">
+                    <div>
+                        <a href="{{ route('Seller.messages.show', [$otherUser->id, $productId !== 'none' ? $productId : null]) }}" class="font-medium text-gray-800 hover:text-blue-600">
+                            {{ $otherUser->name }}
+                        </a>
+                        @if($first->product)
+                            <p class="text-sm text-gray-500">Regarding: {{ $first->product->name }}</p>
+                        @endif
+                        <p class="text-sm text-gray-600 truncate">{{ $first->content }}</p>
+                    </div>
+                    <span class="text-xs text-gray-400">{{ $first->created_at->diffForHumans() }}</span>
+                </li>
+            @endforeach
+        </ul>
+    @endif
 </div>
 @endsection

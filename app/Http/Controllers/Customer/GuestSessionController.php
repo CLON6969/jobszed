@@ -11,11 +11,11 @@ class GuestSessionController extends Controller
     public function index()
     {
         $sessions = GuestSession::latest()->paginate(20);
-        return view('user.Customer.guest_sessions.index', compact('sessions'));
+        return view('Customer.guest_sessions.index', compact('sessions'));
     }
 
     public function show(GuestSession $guestSession)
     {
-        return view('user.Customer.guest_sessions.show', compact('guestSession'));
+        return view('Customer.guest_sessions.show', compact('guestSession'));
     }
 }

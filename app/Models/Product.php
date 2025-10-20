@@ -27,6 +27,14 @@ class Product extends Model
     public function variations() { return $this->hasMany(ProductVariation::class); }
     public function media() { return $this->hasMany(ProductMedia::class); }
     public function reviews() { return $this->hasMany(Review::class); }
+    
+
+    // In Product.php
+public function savedByUsers()
+{
+    return $this->belongsToMany(User::class, 'saved_products')->withTimestamps();
+}
+
 
     protected static function booted()
 {

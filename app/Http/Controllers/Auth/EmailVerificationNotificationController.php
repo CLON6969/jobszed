@@ -22,7 +22,7 @@ class EmailVerificationNotificationController extends Controller
                 1 => route('admin.dashboard'),
                 2 => route('staff.dashboard'),
                 3 => route('Seller.dashboard'),
-                4 => route('user.Customer.dashboard'),
+                4 => route('Customer.dashboard'),
                 default => '/',
             });
         }

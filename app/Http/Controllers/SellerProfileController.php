@@ -27,6 +27,7 @@ public function edit(Request $request): View
         'phone',
         'address',
         'city',
+        'whatsapp',
         'state',
         'postal_code',
         'country',

@@ -1,39 +1,72 @@
-@extends('layouts.customer')
+{{-- resources/views/Customer/messages/show.blade.php --}}
+@extends('layouts.Customer')
 
 @section('content')
-<h2 class="text-2xl font-semibold mb-4">Conversation with {{ $user->name }}</h2>
-
-<div class="bg-gray-100 p-4 rounded-lg max-h-[60vh] overflow-y-auto">
-    @foreach($messages as $msg)
-        <div class="mb-3 {{ $msg->sender_id === auth()->id() ? 'text-right' : 'text-left' }}">
-            <div class="inline-block px-4 py-2 rounded-lg {{ $msg->sender_id === auth()->id() ? 'bg-blue-500 text-white' : 'bg-gray-300' }}">
-                {{ $msg->message }}
-                @if($msg->edited_at)
-                    <span class="text-xs italic opacity-75">(edited)</span>
-                @endif
-            </div>
-            <div class="text-xs text-gray-500 mt-1">
-                {{ $msg->created_at->format('d M Y, H:i') }}
-            </div>
+<div class="max-w-4xl mx-auto bg-white shadow rounded-lg overflow-hidden flex flex-col h-[80vh]">
+    <div class="flex items-center justify-between p-4 border-b">
+        <div>
+            <h2 class="font-semibold text-lg">{{ $seller->name }}</h2>
+            @if($product)
+                <p class="text-sm text-gray-500">Regarding: {{ $product->title }}</p>
+            @endif
         </div>
+        <a href="{{ route('Customer.messages.index') }}" class="text-blue-500 text-sm">← Back</a>
+    </div>
 
-        @if($msg->sender_id === auth()->id())
-            <div class="flex justify-end gap-2 mb-4">
-                <a href="{{ route('user.Customer.messages.edit', $msg->id) }}" class="text-blue-600 text-sm">Edit</a>
-                <form action="{{ route('user.Customer.messages.destroy', $msg->id) }}" method="POST" onsubmit="return confirm('Delete this message?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="text-red-600 text-sm">Delete</button>
-                </form>
+    <div id="chat-box" class="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-50">
+        @foreach($messages as $msg)
+            @php
+                $isMine = $msg->sender_id === auth()->id();
+            @endphp
+            <div class="flex {{ $isMine ? 'justify-end' : 'justify-start' }}">
+                <div class="max-w-[70%] rounded-2xl px-4 py-2 {{ $isMine ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-800' }}">
+                    
+                    {{-- MEDIA --}}
+                    @if(isset($msg->metadata['media']))
+                        <div class="mb-2">
+                            @if(Str::startsWith($msg->metadata['media_type'], 'image'))
+                                <img src="{{ asset('storage/' . $msg->metadata['media']) }}" class="rounded-lg max-h-48 cursor-pointer">
+                            @elseif(Str::startsWith($msg->metadata['media_type'], 'video'))
+                                <video controls class="rounded-lg max-h-48">
+                                    <source src="{{ asset('storage/' . $msg->metadata['media']) }}">
+                                </video>
+                            @else
+                                <a href="{{ route('Customer.messages.download', $msg->id) }}" class="underline text-sm">📎 Download File</a>
+                            @endif
+                        </div>
+                    @endif
+
+                    {{-- MESSAGE CONTENT --}}
+                    @if($msg->status === 'deleted')
+                        <p class="italic text-gray-400">This message was deleted</p>
+                    @else
+                        {{ $msg->content }}
+                    @endif
+
+                    {{-- REPLY INFO --}}
+                    @if(isset($msg->metadata['reply_to']))
+                        <p class="text-xs text-gray-400 mt-1">↪ Reply to #{{ $msg->metadata['reply_to'] }}</p>
+                    @endif
+
+                    <p class="text-[10px] text-gray-300 mt-1 text-right">{{ $msg->created_at->format('H:i') }}</p>
+                </div>
             </div>
-        @endif
-    @endforeach
-</div>
+        @endforeach
+    </div>
 
-<form action="{{ route('user.Customer.messages.store') }}" method="POST" class="mt-4 flex gap-2">
-    @csrf
-    <input type="hidden" name="receiver_id" value="{{ $user->id }}">
-    <input type="text" name="message" placeholder="Type a message..." class="flex-grow form-input" required>
-    <button class="btn btn-primary">Send</button>
-</form>
+    {{-- MESSAGE FORM --}}
+    <form method="POST" action="{{ route('Customer.messages.send', [$seller->id, $product?->id]) }}" enctype="multipart/form-data" class="p-4 border-t flex items-center space-x-2">
+        @csrf
+        <input type="text" name="content" class="flex-1 border rounded-full px-4 py-2 focus:ring focus:ring-green-200" placeholder="Type a message...">
+        
+        <input type="file" name="media" id="mediaInput" class="hidden" accept="image/*,video/*,application/*">
+        <button type="button" onclick="document.getElementById('mediaInput').click()" class="text-gray-500 hover:text-green-600">
+            📎
+        </button>
+
+        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600">
+            Send
+        </button>
+    </form>
+</div>
 @endsection

@@ -25,6 +25,7 @@ public function edit(Request $request): View
         'username',
         'email',
         'phone',
+        'whatsapp',
         'address',
         'city',
         'state',

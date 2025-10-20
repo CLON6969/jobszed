@@ -54,15 +54,14 @@ Route::middleware(['auth', 'role:3'])->prefix('Seller')->name('Seller.')->group(
 
         // -----------------------------
         // Messages (Seller-Customer)
-        // -----------------------------
-        Route::prefix('messages')->name('messages.')->group(function () {
-            Route::get('/', [MessageController::class, 'index'])->name('index');
-            Route::get('/{id}', [MessageController::class, 'show'])->name('show');
-            Route::post('/send', [MessageController::class, 'store'])->name('store');
-            Route::put('/{id}/update', [MessageController::class, 'update'])->name('update');
-            Route::delete('/{id}/delete', [MessageController::class, 'destroy'])->name('destroy');
-        });
-
+    Route::prefix('messages')->name('messages.')->group(function () {
+        Route::get('/', [MessageController::class, 'index'])->name('index');
+        Route::get('/{Customer}/{product?}', [MessageController::class, 'show'])->name('show');
+        Route::post('/{Customer}/{product?}', [MessageController::class, 'send'])->name('send');
+        Route::put('/{id}', [MessageController::class, 'update'])->name('update');
+        Route::delete('/{id}', [MessageController::class, 'destroy'])->name('destroy');
+        Route::get('/download/{id}', [MessageController::class, 'download'])->name('download');
+    });
         // -----------------------------
         // Categories
         // -----------------------------

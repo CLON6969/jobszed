@@ -389,7 +389,7 @@ createNavButton('Orders','fa-solid fa-cart-shopping','My Orders','{{ route("user
 
 createNavButton('Order Items','fa-solid fa-box-check','My Order Items','{{ route("user.Customer.order-items.index") }}');
 
-createNavButton('Analytics','fa-solid fa-chart-line','My Activity','{{ route("user.Customer.analytics.index") }}');
+
 
 
 

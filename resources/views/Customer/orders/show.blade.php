@@ -1,30 +1,24 @@
-@extends('layouts.customer')
+@extends('layouts.Customer')
 
 @section('content')
-<h2 class="text-2xl font-semibold mb-4">Order Details</h2>
+<div class="max-w-4xl mx-auto bg-white rounded-2xl shadow p-6">
+    <h2 class="text-2xl font-semibold mb-4">Order #{{ $order->id }}</h2>
 
-<div class="bg-white p-4 rounded-lg shadow">
-    <p><strong>Order ID:</strong> {{ $order->id }}</p>
-    <p><strong>Status:</strong> {{ ucfirst($order->status) }}</p>
-    <p><strong>Total:</strong> ZMW {{ number_format($order->total_amount, 2) }}</p>
-    <p><strong>Delivery:</strong> {{ ucfirst($order->delivery_method) }}</p>
+    <div class="mb-4">
+        <p><strong>Status:</strong> {{ ucfirst($order->status) }}</p>
+        <p><strong>Total:</strong> K{{ number_format($order->total_amount,2) }}</p>
+        <p><strong>Seller:</strong> {{ $order->seller->business_name ?? 'N/A' }}</p>
+        <p><strong>Scheduled At:</strong> {{ $order->scheduled_at ?? 'Not scheduled' }}</p>
+    </div>
 
-    <h3 class="mt-4 text-xl font-semibold">Items</h3>
-    <ul class="list-disc ml-5">
+    <h3 class="font-semibold mb-2">Items</h3>
+    <ul class="divide-y divide-gray-200">
         @foreach($order->items as $item)
-            <li>{{ $item->product->name }} (x{{ $item->quantity }}) — ZMW {{ number_format($item->subtotal, 2) }}</li>
+            <li class="py-2 flex justify-between">
+                <span>{{ $item->product->name }}</span>
+                <span>K{{ number_format($item->subtotal,2) }}</span>
+            </li>
         @endforeach
     </ul>
-
-    <div class="mt-4">
-        @if ($order->status === 'pending')
-            <a href="{{ route('user.Customer.orders.edit', $order) }}" class="btn btn-warning">Edit</a>
-            <form action="{{ route('user.Customer.orders.destroy', $order) }}" method="POST" class="inline">
-                @csrf @method('DELETE')
-                <button class="btn btn-danger" onclick="return confirm('Cancel this order?')">Cancel</button>
-            </form>
-        @endif
-        <a href="{{ route('user.Customer.orders.index') }}" class="btn btn-secondary">Back</a>
-    </div>
 </div>
 @endsection

@@ -1,21 +1,19 @@
-@extends('layouts.seller')
+{{-- resources/views/Seller/messages/edit.blade.php --}}
+@extends('layouts.Seller')
 
 @section('content')
-<div class="container">
-    <h3>Edit Message</h3>
+<div class="max-w-md mx-auto bg-white shadow rounded-lg p-6">
+    <h2 class="text-lg font-semibold mb-4">Edit Message</h2>
 
-    <form action="{{ route('Seller.messages.update', $message->id) }}" method="POST">
+    <form method="POST" action="{{ route('Seller.messages.update', $message->id) }}">
         @csrf
         @method('PUT')
 
-        <div class="mb-3">
-            <label for="content" class="form-label">Message Content</label>
-            <textarea name="content" class="form-control" rows="3" required>{{ str_replace(' (edited)', '', $message->content) }}</textarea>
-        </div>
+        <textarea name="content" class="w-full border rounded-lg p-2 mb-3" rows="4" required>{{ old('content', $message->content) }}</textarea>
 
-        <div class="d-flex justify-content-between">
-            <a href="{{ url()->previous() }}" class="btn btn-secondary">Cancel</a>
-            <button type="submit" class="btn btn-success">Save Changes</button>
+        <div class="flex justify-end space-x-2">
+            <a href="{{ url()->previous() }}" class="px-4 py-2 bg-gray-200 rounded-lg">Cancel</a>
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Update</button>
         </div>
     </form>
 </div>

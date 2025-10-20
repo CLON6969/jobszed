@@ -1,23 +1,34 @@
-@extends('layouts.customer')
+{{-- resources/views/Customer/messages/index.blade.php --}}
+@extends('layouts.Customer')
 
 @section('content')
-<h2 class="text-2xl font-semibold mb-4">My Conversations</h2>
+<div class="max-w-5xl mx-auto bg-white shadow rounded-lg p-6">
+    <h2 class="text-xl font-semibold mb-4">Your Conversations</h2>
 
-<a href="{{ route('user.Customer.messages.create') }}" class="btn btn-primary mb-4">Start New Conversation</a>
-
-<div class="bg-white shadow rounded-lg p-4">
-    @forelse ($messages as $message)
-        <div class="border-b py-3">
-            <p><strong>To:</strong> {{ $message->receiver->name }}</p>
-            <p>{{ Str::limit($message->message, 100) }}</p>
-            <a href="{{ route('user.Customer.messages.show', $message->receiver_id) }}" class="btn btn-info btn-sm mt-2">View Chat</a>
-        </div>
-    @empty
-        <p>No messages found.</p>
-    @endforelse
-</div>
-
-<div class="mt-4">
-    {{ $messages->links() }}
+    @if($threads->isEmpty())
+        <p class="text-gray-500">You have no conversations yet.</p>
+    @else
+        <ul class="divide-y divide-gray-200">
+            @foreach($threads as $key => $messages)
+                @php
+                    $first = $messages->last();
+                    [$otherUserId, $productId] = explode('_', $key);
+                    $otherUser = $first->sender_id === auth()->id() ? $first->receiver : $first->sender;
+                @endphp
+                <li class="py-3 flex items-center justify-between">
+                    <div>
+                        <a href="{{ route('Customer.messages.show', [$otherUser->id, $productId !== 'none' ? $productId : null]) }}" class="font-medium text-gray-800 hover:text-blue-600">
+                            {{ $otherUser->name }}
+                        </a>
+                        @if($first->product)
+                            <p class="text-sm text-gray-500">Regarding: {{ $first->product->title }}</p>
+                        @endif
+                        <p class="text-sm text-gray-600 truncate">{{ $first->content ?: 'Media attachment' }}</p>
+                    </div>
+                    <span class="text-xs text-gray-400">{{ $first->created_at->diffForHumans() }}</span>
+                </li>
+            @endforeach
+        </ul>
+    @endif
 </div>
 @endsection

@@ -1,4 +1,4 @@
-@extends('layouts.seller')
+@extends('layouts.Seller')
 
 @section('content')
 <h2 class="text-2xl font-semibold mb-4">Send Message to Customer</h2>

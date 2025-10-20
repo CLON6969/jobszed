@@ -42,7 +42,7 @@
             </button>
             <button id="toggleTheme" class="btn btn-sm">Dark Mode</button>
         </div>
-        <iframe id="contentFrame" src="{{ route('user.Customer.profile-account.index') }}"></iframe>
+        <iframe id="contentFrame" src="{{ route('Customer.profile-account.index') }}"></iframe>
     </div>
 
 </div>
@@ -374,22 +374,25 @@ function createNavButton(label, icon, title, url){
 }
 
 
+createNavButton('Dashboard','fa-solid fa-home','Dashboard','{{ route("Customer.home.index") }}');
+
+createNavButton('Messages','fa-solid fa-envelope','Messages','{{ route("Customer.messages.index") }}');
+
+createNavButton('Orders','fa-solid fa-cart-shopping','My Orders','{{ route("Customer.orders.index") }}');
+
+createNavButton('Saved Products','fa-solid fa-heart','Saved Products','{{ route("Customer.saved.index") }}');
+
+createNavButton('Schedule','fa-solid fa-calendar-check','My Schedule','{{ route("Customer.schedule.index") }}');
+
+createNavButton('Analytics','fa-solid fa-chart-line','Analytics','{{ route("Customer.analytics.index") }}');
 
 
-createNavButton('My Profile','fa-solid fa-gears','My Profile','{{ route("user.Customer.profile-account.index") }}');
-
-createNavButton('Messages','fa-solid fa-envelope','Messages','{{ route("user.Customer.messages.index") }}');
-
-createNavButton('Categories','fa-solid fa-folder','Product Categories','{{ route("user.Customer.categories.index") }}');
+createNavButton('My Profile','fa-solid fa-user-gear','My Profile','{{ route("Customer.profile-account.index") }}');
 
 
-createNavButton('Products','fa-solid fa-box','Browse Products','{{ route("user.Customer.products.index") }}');
 
-createNavButton('Orders','fa-solid fa-cart-shopping','My Orders','{{ route("user.Customer.orders.index") }}');
 
-createNavButton('Order Items','fa-solid fa-box-check','My Order Items','{{ route("user.Customer.order-items.index") }}');
 
-createNavButton('Analytics','fa-solid fa-chart-line','My Activity','{{ route("user.Customer.analytics.index") }}');
 
 
 

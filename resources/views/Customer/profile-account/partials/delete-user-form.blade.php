@@ -6,7 +6,7 @@
         <p class="text-muted">Once your account is deleted, all of its resources and data will be permanently deleted. 
         Please enter your password to confirm you want to permanently delete your account.</p>
 
-        <form method="POST" action="{{ route('user.Customer.profile-account.destroy') }}">
+        <form method="POST" action="{{ route('Customer.profile-account.destroy') }}">
             @csrf
             @method('DELETE')
 

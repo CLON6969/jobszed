@@ -23,7 +23,7 @@ class DashboardController extends Controller
 
     public function user()
     {
-        return view('user.Customer.dashboard');
+        return view('Customer.dashboard');
     }
 
         public function Seller()
@@ -97,6 +97,6 @@ public function jobUserSummary()
             return redirect()->route('onboarding.step1');
         }
 
-        return view('user.Customer.dashboard');
+        return view('Customer.dashboard');
     }
 }

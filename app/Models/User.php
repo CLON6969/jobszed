@@ -21,6 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_picture',
         'account_status',
         'phone',
+        'whatsapp',
         'address',
         'city',
         'state',
@@ -58,6 +59,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isAdmin(): bool { return $this->role?->name === 'admin'; }
     public function isSeller(): bool { return $this->role?->name === 'seller'; }
     public function isCustomer(): bool { return $this->role?->name === 'customer'; }
+
+    public function savedProducts()
+{
+    return $this->belongsToMany(Product::class, 'saved_products')->withTimestamps();
+}
+
 }
 
 

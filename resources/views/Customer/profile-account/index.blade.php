@@ -39,7 +39,7 @@
     @endif
 
     <!-- Profile Update Form -->
-    <form id="myForm"  method="POST" action="{{ route('user.Customer.profile-account.update') }}" enctype="multipart/form-data">
+    <form id="myForm"  method="POST" action="{{ route('Customer.profile-account.update') }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -242,7 +242,7 @@
             </button>
         </div>
 
-        <form action="{{ route('user.Customer.profile-account.destroy') }}" method="POST" target="_top">
+        <form action="{{ route('Customer.profile-account.destroy') }}" method="POST" target="_top">
             @csrf
             @method('DELETE')
 
