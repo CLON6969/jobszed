@@ -25,10 +25,10 @@
         };
     </script>
 
-  <title> Careers | Jobs</title>
+  <title> Mongutech | Products </title>
   
      <!-- icon -->
-   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+   <link rel="icon" type="image/x-icon" href="{{ asset('favicon2.ico') }}">
 
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 

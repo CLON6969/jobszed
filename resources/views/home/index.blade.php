@@ -1,4 +1,4 @@
-@extends('layouts.jobs')
+@extends('layouts.home')
 
 @section('content')
 
@@ -42,7 +42,7 @@
         </h2>
         <button onclick="document.documentElement.classList.toggle('dark')" 
                 class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 transition" data-aos="fade-left">
-            <i class="fa-solid fa-moon"></i> Toggle Dark Mode
+            <i class="fa-solid fa-moon"></i>Dark Mode
         </button>
     </div>
 </header>
@@ -81,16 +81,24 @@
                 <option value="used" {{ request('condition') == 'used' ? 'selected' : '' }}>Used</option>
             </select>
 
-            <!-- Location -->
-            <select name="location"
-                    class="py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 
-                           bg-white  text-sm focus:ring-2 focus:ring-indigo-500"
-                    data-aos="fade-up" data-aos-delay="300">
-                <option value="">All Locations</option>
-                <option value="Lusaka" @if(request('location')=='Lusaka') selected @endif>Lusaka</option>
-                <option value="Ndola" @if(request('location')=='Ndola') selected @endif>Ndola</option>
-                <option value="Kitwe" @if(request('location')=='Kitwe') selected @endif>Kitwe</option>
-            </select>
+<!-- Location -->
+<select name="location"
+        class="py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 
+               bg-white text-sm focus:ring-2 focus:ring-indigo-500"
+        data-aos="fade-up" data-aos-delay="300">
+    <option value="">All Locations</option>
+    <option value="Central" @if(request('location')=='Central') selected @endif>Central</option>
+    <option value="Copperbelt" @if(request('location')=='Copperbelt') selected @endif>Copperbelt</option>
+    <option value="Eastern" @if(request('location')=='Eastern') selected @endif>Eastern</option>
+    <option value="Luapula" @if(request('location')=='Luapula') selected @endif>Luapula</option>
+    <option value="Lusaka" @if(request('location')=='Lusaka') selected @endif>Lusaka</option>
+    <option value="Muchinga" @if(request('location')=='Muchinga') selected @endif>Muchinga</option>
+    <option value="Northern" @if(request('location')=='Northern') selected @endif>Northern</option>
+    <option value="North-Western" @if(request('location')=='North-Western') selected @endif>North-Western</option>
+    <option value="Southern" @if(request('location')=='Southern') selected @endif>Southern</option>
+    <option value="Western" @if(request('location')=='Western') selected @endif>Western</option>
+</select>
+
 
             <!-- Product Status -->
             <select name="status"

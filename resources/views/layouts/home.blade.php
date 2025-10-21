@@ -2,35 +2,42 @@
     $logo = App\Models\Logo::first(); // Changed from $icons = ... to $logo = ...
 @endphp
 <!DOCTYPE html>
-<html lang="en" class="bg-white text-black">
-
+<html lang="en" class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Careers | Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800, // animation duration in ms
+    once: true,    // animate only once
+  });
+</script>
+
+ <!-- tailwindcss -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        };
+    </script>
+
+  <title> Mongutech | Products </title>
   
      <!-- icon -->
-   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+   <link rel="icon" type="image/x-icon" href="{{ asset('favicon2.ico') }}">
 
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-    <link href="/vendor/fontawesome/css/all.min.css" rel="stylesheet">
+
         <!-- fontawsome back up-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
-
-    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- AOS Library for Scroll Animations -->
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <link href="{{ asset('/public/css/app.css') }}" rel="stylesheet">
-
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
 
 
     
-     <link href="{{ asset('/public/resources/css/welcome2.css') }}" rel="stylesheet">
-
-     <style>
+    <style>
         /* Preloader full screen */
 #preloader {
     position: fixed;
@@ -70,14 +77,10 @@
 
      </style>
 
-</head>
-<body >
-    
-    <!-- Preloader -->
-<div id="preloader">
-    <img src="{{ asset('/public/storage/uploads/logo/' . $logo->picture2) }}" alt="logo" class="preloader-logo">
-</div>
 
+
+</head>
+<body class="min-h-screen flex flex-col">
 <!-- Nav1 Content -->
     <x-navbar />
 
@@ -89,7 +92,7 @@
 <!-- footer Content -->
     <x-footer />
 
-    <script>
+           <script>
     window.addEventListener('load', function() {
         const preloader = document.getElementById('preloader');
         if (preloader) {
@@ -98,6 +101,5 @@
         }
     });
 </script>
-
 </body>
 </html>

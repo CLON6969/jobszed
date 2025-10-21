@@ -10,7 +10,7 @@
    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 
       <!-- icon -->
-   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+   <link rel="icon" type="image/x-icon" href="{{ asset('favicon2.ico') }}">
        <!-- fontawsome back up-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
 
@@ -20,7 +20,7 @@
    
    <!--JS Scripts -->
 
-   <title>Kumoyo | Sigin</title>
+   <title>Mongutech | Sigin</title>
    <style>
         /* Preloader full screen */
 #preloader {

@@ -1,4 +1,4 @@
-@extends('layouts.seller')
+@extends('layouts.Seller')
 
 @section('content')
 <div class="max-w-6xl mx-auto bg-white p-8 rounded-2xl shadow-md border border-gray-100">

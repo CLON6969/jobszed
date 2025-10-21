@@ -1,4 +1,4 @@
-@extends('layouts.Customer')
+@extends('layouts.home')
 
 @section('title', $product->name)
 

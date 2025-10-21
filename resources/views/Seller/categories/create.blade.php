@@ -1,4 +1,4 @@
-@extends('layouts.seller')
+@extends('layouts.Seller')
 
 @section('content')
 <div class="container py-4">

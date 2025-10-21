@@ -15,7 +15,7 @@
     <p class="text-gray-600"><strong>Date:</strong> {{ $order->created_at->format('M d, Y H:i') }}</p>
     <p class="text-gray-600"><strong>Total:</strong> K{{ number_format($order->total_amount, 2) }}</p>
     <p class="text-gray-600"><strong>Fulfillment:</strong> {{ ucfirst($order->fulfillment_type) }}</p>
-    <p class="text-gray-600"><strong>Seller:</strong> {{ $order->seller->business_name ?? 'N/A' }}</p>
+    <p class="text-gray-600"><strong>Seller:</strong> {{ $order->Seller->business_name ?? 'N/A' }}</p>
   </div>
 
   <h3 class="text-lg font-semibold mb-3 text-gray-800">Order Items</h3>

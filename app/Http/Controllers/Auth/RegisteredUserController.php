@@ -47,7 +47,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('onboarding.step1');
+        return redirect()->route('Customer.dashboard');
     }
 
 

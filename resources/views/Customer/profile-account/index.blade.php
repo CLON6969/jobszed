@@ -49,7 +49,7 @@
                 <div class="text-center">
                     <div class="relative w-32 h-32 mx-auto">
                         <img id="profileImage"
-                             src="{{ Auth::user()->profile_picture ? asset('public/storage/' . Auth::user()->profile_picture) : asset('public/uploads/pics/default.png') }}"
+                             src="{{ Auth::user()->profile_picture ? asset('public/storage/' . Auth::user()->profile_picture) : asset('public/uploads/pics/default1.png') }}"
                              alt="Profile Picture"
                              class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md">
 

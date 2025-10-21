@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kumoyo | web</title>
+    <title>Mongutech | web</title>
 
     <link href="/vendor/fontawesome/css/all.min.css" rel="stylesheet">
         <!-- fontawsome back up-->

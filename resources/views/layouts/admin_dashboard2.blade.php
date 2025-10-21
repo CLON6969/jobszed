@@ -14,7 +14,7 @@
    
 
    <!-- icon -->
-   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+   <link rel="icon" type="image/x-icon" href="{{ asset('favicon2.ico') }}">
 
 
    <!-- fontawsome -->
@@ -72,7 +72,7 @@
      </style>
 
   
-   <title>Kumoyo | Dashboard</title>
+   <title>Mongutech | Dashboard</title>
 </head>
 
 

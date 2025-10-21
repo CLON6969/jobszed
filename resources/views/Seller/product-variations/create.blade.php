@@ -1,4 +1,4 @@
-@extends('layouts.seller')
+@extends('layouts.Seller')
 
 @section('content')
 <h1 class="text-2xl font-semibold mb-6">Add Product Variation</h1>
@@ -11,7 +11,7 @@
         <label class="block text-gray-700 mb-1">Product</label>
         <select name="product_id" class="border rounded w-full p-2 @error('product_id') border-red-500 @enderror" required>
             <option value="">Select Product</option>
-            @foreach($sellerProducts as $p)
+            @foreach($SellerProducts as $p)
                 <option value="{{ $p->id }}" {{ old('product_id') == $p->id ? 'selected' : '' }}>{{ $p->name }}</option>
             @endforeach
         </select>

@@ -1,4 +1,4 @@
-@extends('layouts.seller')
+@extends('layouts.Seller')
 
 @section('content')
 <h1 class="text-2xl font-semibold mb-6">Edit Variation</h1>

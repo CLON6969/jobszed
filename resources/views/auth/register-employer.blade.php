@@ -15,7 +15,7 @@
                     <img src="{{ asset('/public/storage/uploads/logo/' . $logo->picture) }}" alt="logo">
                 </a>
                 
-                <h2>Sign up for Kumoyo</h2>
+                <h2>Sign up for Mongutech</h2>
             </div>
 
             <form method="POST" action="{{ route('register') }}">

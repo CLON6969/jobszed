@@ -1,13 +1,15 @@
+
+
 <!DOCTYPE html>
 <html lang="en" class="bg-white text-black">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Kumoyo | About Us</title>
+  <title> Mongutech | About Us</title>
   
      <!-- icon -->
-   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+   <link rel="icon" type="image/x-icon" href="{{ asset('favicon2.ico') }}">
 
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
     <link href="/vendor/fontawesome/css/all.min.css" rel="stylesheet">

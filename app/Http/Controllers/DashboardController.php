@@ -93,9 +93,6 @@ public function jobUserSummary()
     {
         $user = Auth::user();
 
-        if (!$user->onboarding_complete) {
-            return redirect()->route('onboarding.step1');
-        }
 
         return view('Customer.dashboard');
     }

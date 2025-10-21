@@ -1,4 +1,4 @@
-@extends('layouts.seller')
+@extends('layouts.Seller')
 
 
 
@@ -23,7 +23,7 @@
             <label class="block text-gray-700 mb-2">Select Product</label>
             <select name="product_id" class="w-full border-gray-300 rounded-lg p-2" required>
                 <option value="">Select Product</option>
-                @foreach($sellerProducts as $product)
+                @foreach($SellerProducts as $product)
                     <option value="{{ $product->id }}">{{ $product->name }}</option>
                 @endforeach
             </select>

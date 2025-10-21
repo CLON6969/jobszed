@@ -23,8 +23,8 @@ class LogoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'picture' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-            'picture2' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'picture' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:11048',
+            'picture2' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:11048',
             'background_picture' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:11048',
             'title' => 'required|string|max:255',
             'home_url' => 'nullable|url|max:255', 
@@ -75,8 +75,8 @@ class LogoController extends Controller
     public function update(Request $request, Logo $logo)
     {
         $request->validate([
-            'picture' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-            'picture2' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'picture' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:11048',
+            'picture2' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:11048',
             'background_picture' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:11048',
             'title' => 'required|string|max:255',
             'home_url' => 'nullable|url|max:255', 

@@ -5,14 +5,14 @@
     <div class="left-section">
         <img src="{{ asset('/public/uploads/pics/83.jpg') }}" alt="logo">
         <div class="overlay">
-            <h1>Kumoyo Platform</h1>
+            <h1>Mongutech Platform</h1>
             <h2>Talk to our sales team</h2>
             <ul>
                 <li>Get started with a free trial or a demo</li>
                 <li>Learn about our products and solutions</li>
-                <li>Find the best kumoyo plan tailored to your business's unique needs</li>
+                <li>Find the best Mongutech plan tailored to your business's unique needs</li>
                 <li>Need customer support? Contact Enterprise Support</li>
-                <li>Kumoyo partners with industry leaders</li>
+                <li>Mongutech partners with industry leaders</li>
             </ul>
         </div>
     </div>
@@ -255,7 +255,7 @@
 
             <div class="checkbox-container">
                 <input type="checkbox" name="consent" value="1">
-                <p>Yes please, I’d like kumoyo and affiliates to use my information for personalized communications...</p>
+                <p>Yes please, I’d like Mongutech and affiliates to use my information for personalized communications...</p>
             </div>
 
             <button type="submit">Contact sales →</button>

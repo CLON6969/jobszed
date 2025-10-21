@@ -14,7 +14,7 @@
                     
                     <img src="{{ asset('/public/storage/uploads/logo/' . $logo->picture) }}" alt="logo">
                 </a>
-                <h2>Sign in to Kumoyo</h2>
+                <h2>Sign in to Mongutech</h2>
             </div>
 
             <form method="POST" action="{{ route('login') }}">
@@ -68,7 +68,7 @@
 
 
 
-                <p class="signup-text">New to Kumoyo? <a href="{{ route('register') }}">Sign up</a></p>
+                <p class="signup-text">New to Mongutech? <a href="{{ route('register') }}">Sign up</a></p>
             </form>
 
             <p class="footer">© 2025 Powered by Kumoyo Technologies.</p>

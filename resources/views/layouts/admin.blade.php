@@ -9,7 +9,7 @@
     <title>Step X</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon2.ico') }}">
     
     <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>

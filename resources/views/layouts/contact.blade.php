@@ -10,7 +10,7 @@
    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 
       <!-- icon -->
-   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+   <link rel="icon" type="image/x-icon" href="{{ asset('favicon2.ico') }}">
 
 
    <!-- fontawsome -->
@@ -79,7 +79,7 @@
    
    <!--JS Scripts -->
    <script src="{{ asset('/public/resources/js/app.js') }}" defer></script>
-   <title>Kumoyo | sales</title>
+   <title>Mongutech | sales</title>
 </head>
 
 

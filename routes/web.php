@@ -16,7 +16,7 @@ HomeController,
 JobController,
 ApplicationController,
 ContactController,
-supportController,
+SupportController,
 AboutController
 
 
